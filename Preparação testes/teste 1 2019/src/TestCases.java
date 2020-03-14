@@ -29,7 +29,6 @@ public class TestCases {
         assertTrue(Modifier.isAbstract(c.getModifiers()));
     }
 
-/*
     @Test
     public void testActs() {
         Act radiohead = new Band("Radiohead", "UK");
@@ -48,9 +47,7 @@ public class TestCases {
         // Make sure your Act class is abstract
         isAbstract(Act.class);
     }
-*/
 
-/*
     @Test
     public void testConcert() {
         Band radiohead = new Band("Radiohead", "UK");
@@ -68,7 +65,6 @@ public class TestCases {
 
         fieldsArentPublic(Concert.class);
     }
-*/
 
 /*
     @Test
