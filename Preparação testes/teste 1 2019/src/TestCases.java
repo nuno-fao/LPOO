@@ -66,7 +66,6 @@ public class TestCases {
         fieldsArentPublic(Concert.class);
     }
 
-/*
     @Test
     public void testEquals() {
         Concert concert1 = new Concert("Paris", "France", "2019/10/10");
@@ -83,10 +82,8 @@ public class TestCases {
         Concert concert5 = new Concert("New York", "USA", "2019/05/20");
         assertEquals(concert4, concert5);
     }
-*/
 
-/*
-    @Test 
+    @Test
     public void testSet() {
         Concert concert1 = new Concert("Paris", "France", "2019/10/10");
         Concert concert2 = new Concert("Paris", "USA", "2019/10/10");
@@ -103,7 +100,6 @@ public class TestCases {
 
         assertEquals(4, tour.size());
     }
-*/
 
 /*
     @Test
