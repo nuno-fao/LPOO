@@ -7,11 +7,13 @@ public class Concert implements Comparable<Concert> {
     private String city;
     private String country;
     private String date;
+    private int ticketNumber;
 
     public Concert(String city, String country, String date){
         this.city=city;
         this.country=country;
         this.date=date;
+        this.ticketNumber=0;
         acts = new ArrayList<>();
     }
 
@@ -31,6 +33,10 @@ public class Concert implements Comparable<Concert> {
         return city;
     }
 
+    public int getTicketNumber() {
+        return ticketNumber;
+    }
+
     public void setActs(List<Act> acts) {
         this.acts = acts;
     }
@@ -45,6 +51,10 @@ public class Concert implements Comparable<Concert> {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public void setTicketNumber(int ticketNumber) {
+        this.ticketNumber = ticketNumber;
     }
 
     public void addAct(Act act){
@@ -75,5 +85,23 @@ public class Concert implements Comparable<Concert> {
         else{
             return date.compareTo(o.getDate());
         }
+    }
+
+    public boolean isValid(Ticket ticket) throws InvalidTicket{
+        if(ticket.getConcert().equals(this)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean participates(Artist artist){
+        for(Act it:acts){
+            if(it.containsArtist(artist)){
+                return true;
+            }
+        }
+        return false;
     }
 }
