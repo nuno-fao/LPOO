@@ -1,12 +1,10 @@
 public class House implements HasArea {
     private double width;
     private double depth;
-    private double height;
 
-    public House(double width, double depth, double height) {
+    public House(double width, double depth) {
         this.width = width;
         this.depth = depth;
-        this.height = height;
     }
 
     public double getWidth() {
@@ -25,16 +23,9 @@ public class House implements HasArea {
         this.depth = depth;
     }
 
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
-    }
 
     @Override
     public double getArea() {
-        return width*depth*height;
+        return width*depth;
     }
 }
