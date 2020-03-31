@@ -1,44 +1,35 @@
 package com.aor.refactoring.example5;
 
 public class Turtle {
-    private int row;
-    private int column;
-    private char direction;
+    private Position position;
 
     public Turtle(int row, int column, char direction) {
-        this.row = row;
-        this.column = column;
-        this.direction = direction;
+        position = new Position(row,column,direction);
     }
 
     public int getRow() {
-        return row;
+        return position.getY();
     }
 
     public int getColumn() {
-        return column;
+        return position.getX();
     }
 
     public char getDirection() {
-        return direction;
+        return position.getDirection();
     }
 
     public void execute(char command) {
+        Command op;
         if (command == 'L') { // ROTATE LEFT
-            if (direction == 'N') direction = 'W';
-            else if (direction == 'W') direction = 'S';
-            else if (direction == 'S') direction = 'E';
-            else if (direction == 'E') direction = 'N';
+            op = new RotateLeft();
+            op.execute(position);
         } else if (command == 'R') { // ROTATE RIGHT
-            if (direction == 'N') direction = 'E';
-            else if (direction == 'E') direction = 'S';
-            else if (direction == 'S') direction = 'W';
-            else if (direction == 'W') direction = 'N';
+            op = new RotateRight();
+            op.execute(position);
         } else if (command == 'F'){ // MOVE FORWARD
-            if (direction == 'N') row--;
-            if (direction == 'S') row++;
-            if (direction == 'W') column--;
-            if (direction == 'E') column++;
+            op = new MoveForward();
+            op.execute(position);
         }
     }
 }
