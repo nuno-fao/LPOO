@@ -36,10 +36,8 @@ public class Tree {
         return this.appraisalDates;
     }
 
-    public boolean isNextAppraisalOverdue(){
-        Date today = new Date();
-        Date latestAppraisalDate = today;
-
+    public Date caculateLastestAppraisalDate(){
+        Date latestAppraisalDate = new Date();
         if (this.appraisalDates.size() > 0) {
             latestAppraisalDate = this.appraisalDates.get(0);
         }
@@ -48,6 +46,12 @@ public class Tree {
                 latestAppraisalDate = appraisalDate;
             }
         }
+        return latestAppraisalDate;
+    }
+
+    public boolean isNextAppraisalOverdue(){
+        Date today = new Date();
+        Date latestAppraisalDate = caculateLastestAppraisalDate();
 
         // Calculate next appraisal date
         Calendar calendar = Calendar.getInstance();
