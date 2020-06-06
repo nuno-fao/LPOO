@@ -1,0 +1,148 @@
+package com.noclue.model;
+
+import com.noclue.Movement;
+
+public class Position implements Cloneable {
+    private int x, y;
+    private int x_max = 1, y_max = 1;
+
+    public Position(int x_max, int y_max, int x, int y) {
+        if (x_max > 0)
+            this.x_max = x_max;
+        else
+            x_max = 1;
+        if (y_max > 0)
+            this.y_max = y_max;
+        else
+            y_max = 1;
+
+        //System.out.println(x_max+" "+y_max);
+
+        if (y <= y_max) {
+            if (y >= 0)
+                this.y = y;
+            else
+                this.y = -1;
+        } else {
+            this.y = 0;
+        }
+
+        if (x <= x_max) {
+            if (x >= 0)
+                this.x = x;
+            else
+                this.x = -1;
+        } else {
+            this.x = 0;
+        }
+    }
+
+    public int getX_max() {
+        return x_max;
+    }
+
+    public int getY_max() {
+        return y_max;
+    }
+
+    @Override
+    public Position clone() {
+        try {
+            return (Position) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Position getPositionByMovement(Movement movement) {
+        if (movement == Movement.left) {
+            return getLeft();
+        } else if (movement == Movement.right) {
+            return getRight();
+        } else if (movement == Movement.down) {
+            return getDown();
+        } else if (movement == Movement.up) {
+            return getUp();
+        } else {
+            return this;
+        }
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        if (!(y > y_max) && y >= 0)
+            this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        if (!(x > x_max) && x >= 0)
+            this.x = x;
+    }
+
+    public Position getRealPosition() {
+        return new Position(x_max * 6 + 20, y_max * 3 + 20, x * 6, y * 3);
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return this.x == position.getX() && this.y == position.getY();
+    }
+
+    public Position getUp() {
+        Position position = this.clone();
+        if (position.getY() > 0)
+            position.y -= 1;
+        return position;
+    }
+
+    public Position getDown() {
+        Position position = this.clone();
+        if (position.getY() < y_max)
+            position.y += 1;
+        return position;
+    }
+
+    public Position getLeft() {
+        Position position = this.clone();
+        if (position.getX() > 0)
+            position.x -= 1;
+        return position;
+    }
+
+    public Position getRight() {
+        Position position = this.clone();
+        if (position.getX() < x_max)
+            position.x += 1;
+        return position;
+    }
+
+    public void setUp() {
+        y--;
+    }
+
+    public void setDown() {
+        y++;
+    }
+
+    public void setLeft() {
+        x--;
+    }
+
+    public void setRight() {
+        x++;
+    }
+
+
+}

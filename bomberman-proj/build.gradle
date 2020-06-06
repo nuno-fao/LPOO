@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'info.solidsoft.pitest' version '1.4.6'
+}
+
+group 'com.noclue'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.24.5'
+    compile group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.0.1'
+    implementation 'junit:junit:4.12'
+
+}
+
+application {
+    mainClassName = 'com.noclue.Bomberman'
+}
+
+pitest {
+    targetClasses = ['com.noclue.*']
+}
